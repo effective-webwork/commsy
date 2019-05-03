@@ -1,0 +1,10 @@
+beberlei_metrics:
+  default: prometheus
+  collectors:
+    prometheus:
+      type: prometheus
+      prometheus_collector_registry: commsy.metrics.prometheus_collector_registry # using the Prometheus collector registry service named "prometheus_collector_registry_service"
+        namespace: commsy # optional
+        tags:
+          dc: "west"
+          node_instance: "hermes10"

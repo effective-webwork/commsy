@@ -1,4 +1,7 @@
 {
+    "beberlei/metrics": {
+        "version": "v2.8.0"
+    },
     "behat/gherkin": {
         "version": "v4.6.0"
     },
@@ -231,6 +234,9 @@
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "jimdo/prometheus_client_php": {
+        "version": "v0.9.1"
     },
     "knplabs/knp-menu": {
         "version": "2.3.0"

@@ -4,8 +4,76 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "47a889e772765f005d3065f257f1489e",
+    "content-hash": "b7452ac3bcfa38544945e590d6550800",
     "packages": [
+        {
+            "name": "beberlei/metrics",
+            "version": "v2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/metrics.git",
+                "reference": "5d4dde38b21b7600a430baa30f2c375ddc0649e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/metrics/zipball/5d4dde38b21b7600a430baa30f2c375ddc0649e4",
+                "reference": "5d4dde38b21b7600a430baa30f2c375ddc0649e4",
+                "shasum": ""
+            },
+            "require": {
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "corley/influxdb-sdk": "^0.5.1",
+                "doctrine/dbal": "~2.0",
+                "jimdo/prometheus_client_php": "^0.5",
+                "kriswallsmith/buzz": "*",
+                "okitsu/zabbix-sender": "*@dev",
+                "symfony/config": "~3.3 || ~4.0",
+                "symfony/dependency-injection": "~3.3 || ~4.0",
+                "symfony/http-kernel": "~3.3 || ~4.0"
+            },
+            "suggest": {
+                "corley/influxdb-sdk": "For InfluxDB integration",
+                "jimdo/prometheus_client_php": "For Prometheus integration",
+                "kriswallsmith/buzz": "For Librato integration",
+                "okitsu/zabbix-sender": "For zabbix integration"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Beberlei\\Metrics\\": "src/Beberlei/Metrics",
+                    "Beberlei\\Bundle\\MetricsBundle\\": "src/Beberlei/Bundle/MetricsBundle"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Grégoire Pineau",
+                    "email": "lyrixx@lyrixx.info",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Simple library to talk to metrics collector services.",
+            "keywords": [
+                "Metrics",
+                "logging"
+            ],
+            "time": "2018-11-19T09:43:11+00:00"
+        },
         {
             "name": "ci/restclientbundle",
             "version": "2.0.3",
@@ -2272,6 +2340,53 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
+        },
+        {
+            "name": "jimdo/prometheus_client_php",
+            "version": "v0.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Jimdo/prometheus_client_php.git",
+                "reference": "cf3ea93197400a97464ff9bee78cf2169f035327"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Jimdo/prometheus_client_php/zipball/cf3ea93197400a97464ff9bee78cf2169f035327",
+                "reference": "cf3ea93197400a97464ff9bee78cf2169f035327",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "php": ">=5.6.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.1.0"
+            },
+            "suggest": {
+                "ext-apc": "Required if using APCu.",
+                "ext-redis": "Required if using Redis."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Prometheus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Joscha",
+                    "email": "joscha@schnipseljagd.org"
+                },
+                {
+                    "name": "Jan Brauer",
+                    "email": "jan.brauer@jimdo.com"
+                }
+            ],
+            "time": "2017-11-06T11:00:07+00:00"
         },
         {
             "name": "knplabs/knp-menu",

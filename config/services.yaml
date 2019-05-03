@@ -1183,6 +1183,19 @@ services:
         tags:
             - { name: twig.extension }
 
+    # Metrics
+    commsy.metrics.prometheus_collector_registry:
+        class: Prometheus\CollectorRegistry
+        arguments:
+            $redisAdapter: '@Prometheus\Storage\InMemory'
+
+    Prometheus\Storage\InMemory:
+        autowire: false
+
+#    Prometheus\CollectorRegistry:
+#        arguments:
+#            $
+
 ###############################
 ## CommsyMediawikiBundle
 ###############################
