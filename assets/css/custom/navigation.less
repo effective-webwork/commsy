@@ -40,23 +40,21 @@
     }
 }
 
-#commsy_navigation {
-    #commsy_logo {
-        background: #FF404B url(../../img/commsy_logo_short.png) 10px 5px no-repeat;
-        height: 50px;
-        transition: ease-in-out 0.3s;
-
-        p {
-            text-indent: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-        }
+#commsy_logo {
+    background: #FF404B url(../../img/commsy_logo_short.png) 10px 5px no-repeat;
+    height: 50px;
+    width: 200px;
+    transition: ease-in-out 0.3s;
+    p {
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
     }
+}
 
-    &:hover #commsy_logo {
-        background: #FF404B url(../../img/commsy_logo_120.png) 30px 5px no-repeat;
-        transition: ease-in-out 0.3s;
-    }
+&:hover #commsy_logo {
+    background: #FF404B url(../../img/commsy_logo_120.png) 30px 5px no-repeat;
+    transition: ease-in-out 0.3s;
 }
 
 ul#commsy_fields {
@@ -91,7 +89,7 @@ ul#commsy_fields li a:hover {
     padding: 0px 10px 0px 0px;
 }
 @media (min-width: 1300px) {
-    #commsy_navigation #commsy_logo {
+    #commsy_logo {
         background: #FF404B url(../../img/commsy_logo_120.png) 30px 5px no-repeat;
         transition: ease-in-out 0.3s;
     }

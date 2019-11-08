@@ -2,9 +2,22 @@
 
 namespace App\Controller;
 
+use App\Event\CommsyEditEvent;
 use App\Form\DataTransformer\ItemTransformer;
+use App\Form\Type\ItemCatsBuzzType;
+use App\Form\Type\ItemDescriptionType;
+use App\Form\Type\ItemLinksType;
+use App\Form\Type\ItemWorkflowType;
+use App\Form\Type\SendListType;
+use App\Form\Type\SendType;
+use App\Services\LegacyEnvironment;
+use App\Utils\CategoryService;
 use App\Utils\DateService;
+use App\Utils\ItemService;
 use App\Utils\MailAssistant;
+use App\Utils\MaterialService;
+use App\Utils\RoomService;
+use App\Utils\UserService;
 use cs_buzzword_item;
 use cs_buzzword_manager;
 use cs_dates_item;
@@ -12,35 +25,18 @@ use cs_item;
 use cs_manager;
 use cs_tag_item;
 use Exception;
-use FeedIo\Feed\Item;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use App\Form\Type\SendType;
-use App\Form\Type\SendListType;
-use App\Form\Type\ItemDescriptionType;
-use App\Form\Type\ItemCatsBuzzType;
-use App\Form\Type\ItemLinksType;
-use App\Form\Type\ItemWorkflowType;
-use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-
-use App\Event\CommsyEditEvent;
-use App\Services\LegacyEnvironment;
-use App\Utils\CategoryService;
-use App\Utils\ItemService;
-use App\Utils\MaterialService;
-use App\Utils\RoomService;
-use App\Utils\UserService;
+use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
-use Zend\Validator\Translator\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 /**
@@ -823,7 +819,7 @@ class ItemController extends AbstractController
      * @param ItemService $itemService
      * @param LegacyEnvironment $legacyEnvironment
      * @param int $roomId
-     * @param $feedAmount
+     * @param int $feedAmount
      * @return JsonResponse
      */
     public function autocompleteAction(
@@ -831,7 +827,7 @@ class ItemController extends AbstractController
         ItemService $itemService,
         LegacyEnvironment $legacyEnvironment,
         int $roomId,
-        $feedAmount
+        int $feedAmount
     ) {
         $environment = $legacyEnvironment->getEnvironment();
 

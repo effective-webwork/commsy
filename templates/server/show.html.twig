@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block global_navigation %}
+    <nav class="uk-navbar uk-navbar-attached">
+        <div id="commsy_logo"></div>
+    </nav>
+{% endblock %}
+
+{% block context_navigation %}
+{% endblock %}
+
 {% block content %}
     {% if app.user and app.user.username is same as('root') %}
         <div>

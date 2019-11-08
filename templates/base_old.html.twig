@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}{{ pageTitle() }}{% endblock %}</title>
+
+        {% include 'stylesheets.html.twig' %}
+
+        <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('favicon.ico')) }}" />
+    </head>
+    <body id="commsy" class="nav-collapsed">
+
+        {% block context_navigation %}
+            <div id="commsy_navigation" class="uk-hidden-small">
+
+                {# CommSy Logo #}
+                {{ render(controller(
+                    'App\\Controller\\RoomController::logoAction',
+                    { 'roomId': app.request.attributes.get('roomId') }
+                ))}}
+
+                {% block side_navigation %}
+                {% endblock %}
+            </div>
+
+            {# Off-canvas context navigation for small devices #}
+            <div id="commsy_offnavigation" class="uk-offcanvas">
+                <div class="uk-offcanvas-bar" mode="slide">
+                    {{ block('side_navigation') }}
+                </div>
+            </div>
+        {% endblock %}
+
+        <div id="content">
+            {# NavBar #}
+            {% block global_navigation %}
+                <nav class="uk-navbar uk-navbar-attached">
+                    {# right #}
+                    <div class="uk-navbar-flip">
+                        <div class="uk-navbar-content">
+                            {# global search #}
+                            {% if app.request.attributes.get('_route') is not same as('app_tou_accept') %}
+                                {{ render(controller(
+                                    'App\\Controller\\SearchController::searchFormAction', {
+                                        'roomId': app.request.attributes.get('roomId'),
+                                        'requestData': app.request.request.get('search') ?? app.request.query.get('search_filter')
+                                    }
+                                ))}}
+                            {% endif %}
+                        </div>
+
+                        {# global actions #}
+                        {{ render(controller(
+                            'App\\Controller\\UserController::globalNavbarAction',
+                            { 'roomId': app.request.attributes.get('roomId') }
+                        ))}}
+
+                        <div class="uk-navbar-content">
+                            <ul class="uk-navbar-nav">
+                                <li id="navbar_user_icon" class="uk-parent" data-uk-dropdown>
+                                    {{ render(controller(
+                                        'App\\Controller\\ProfileController::imageAction',
+                                        { 'roomId': app.request.attributes.get('roomId') }
+                                    ))}}
+
+                                    {{ render(controller(
+                                        'App\\Controller\\ProfileController::menuAction',
+                                        { 'roomId': app.request.attributes.get('roomId') }
+                                    ))}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {# Off-canvas toggle #}
+                    <a href="#commsy_offnavigation" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
+
+                    {# left #}
+                    <ul class="uk-navbar-nav">
+                        {# All Rooms #}
+                        {{ render(controller(
+                            'App\\Controller\\UserController::allRoomsNavbarAction'
+                        ))}}
+
+                        {# room navigation #}
+                        <li id="room-navigation" data-uk-dropdown="{mode:'click'}" data-commsy-room-navigation="{
+                            source:'{{ path('app_search_roomnavigation', {'roomId': app.request.attributes.get('roomId') }) }}',
+                            minLength: 0,
+                            msgNoResults: '{{ 'No results found'|trans({}, 'search') }}'
+                        }">
+                            <a class="cs-link-highlight">
+                                {{ 'My rooms'|trans({}, 'room') }}
+                                <i class="uk-icon-chevron-down"></i>
+                            </a>
+
+                            <!-- This is the dropdown -->
+                            <div class="uk-dropdown uk-dropdown-scrollable uk-dropdown-width-2">
+                                <div class="uk-form">
+                                    <input class="uk-margin-bottom uk-width-1-1" type="text" placeholder="{{ 'room search text'|trans({}, "rubric")}}">
+                                    <div class="uk-text-center">{{ 'Top 50 matches'|trans({}, 'search') }}</div>
+
+                                    <script type="text/autocomplete">
+                                        {%- verbatim -%}
+                                        <ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">
+                                            {{#items && items.length}}
+                                                {{~items}}
+                                                <li data-url="{{!$item.url}}"{{#$item.disabled}} class="uk-skip uk-text-bold"{{/end}}>
+                                                    <a>
+                                                        {{#$item.text == 'project'}}
+                                                            <i class="uk-margin-small-right uk-icon-angle-double-right"></i>
+                                                        {{/end}}
+                                                        {{#$item.text == 'community'}}
+                                                            <i class="uk-margin-small-right uk-icon-angle-right"></i>
+                                                        {{/end}}
+                                                        {{ $item.title }}
+                                                    </a>
+                                                </li>
+                                                {{/items}}
+                                            {{/end}}
+                                            {{^items.length}}
+                                                {{#msgNoResults}}<li class="uk-skip"><a>{{msgNoResults}}</a></li>{{/msgNoResults}}
+                                            {{/end}}
+                                        </ul>
+                                        {%- endverbatim -%}
+                                    </script>
+                                </div>
+
+                                <div class="loading uk-text-center uk-margin-small-top uk-container-center">
+                                    <i class="uk-icon-spinner uk-icon-small uk-icon-spin"></i>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li>
+                            <img id="room-logo-navbar" src="{{ path('getLogo', {'roomId': app.request.attributes.get('roomId')}) }}">
+                        </li>
+                    </ul>
+
+                </nav>
+            {% endblock %}
+
+            <!-- breadcrumb -->
+            {% block breadcrumb %}
+            {% endblock %}
+
+            <!-- cover -->
+            {% block cover %}
+            {% endblock %}
+
+            <!-- container -->
+            <div id="container" class="uk-container uk-margin-large-bottom">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>

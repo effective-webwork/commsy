@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+    <script src="js/holder.min.js"></script>
+
     <title>Login</title>
 
     {% include 'stylesheets.html.twig' %}
@@ -16,6 +22,11 @@
 <body id="commsy" class="nav-collapsed">
 
 {% block body %}
+
+    <div>
+        {% include 'security/navbar.html.twig' %}
+    </div>
+
     <div>
         <a href="{{ path('app_server_show') }}">Portalübersicht</a>
     </div>

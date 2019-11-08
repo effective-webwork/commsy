@@ -6,6 +6,7 @@ use App\Entity\Portal;
 use App\Entity\RoomPrivat;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,9 +14,18 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
+    /**
+     * @Route("/test")
+     * @Template(template="portal/login.html.twig")
+     */
+    public function test() {
+        return [];
+    }
     /**
      * @Route("/login/{context}", name="app_login")
      * @param AuthenticationUtils $authenticationUtils
+     * @param EntityManagerInterface $entityManager
      * @param string $context
      * @return Response
      */

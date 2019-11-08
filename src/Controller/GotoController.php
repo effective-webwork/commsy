@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,14 +11,15 @@ class GotoController extends AbstractController
 {
     /**
      * @Route("/goto/{itemId}")
+     * @param Connection $dbConnection
      * @param int $itemId
      * @return RedirectResponse
      */
     public function gotoAction(
+        Connection $dbConnection,
         int $itemId
     ) {
         // for now, we are using DBAL here, instead of ORM Entities
-        $dbConnection = $this->get('database_connection');
         $queryBuilder = $dbConnection->createQueryBuilder();
 
         $queryBuilder
