@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block context_free_navigation %}
+
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav uk-visible@s">
+            <li>
+                <a href="#">
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: question"></span>
+                    Hilfe
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: info"></span>
+                    Support
+                </a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+{% block body_content %}
+
+    <div uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <h3>Allgemeine Ankündigung</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="uk-text-meta">Erstellt am ...</p>
+    </div>
+
+{% endblock %}

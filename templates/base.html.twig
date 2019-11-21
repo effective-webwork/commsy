@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ pageTitle() }}{% endblock %}</title>
+
+    {% include 'stylesheets.html.twig' %}
+
+    <link rel="icon" type="image/x-icon" href="{{ absolute_url(asset('favicon.ico')) }}" />
+</head>
+<body>
+
+    {% block navbar %}
+        <nav class="uk-navbar">
+            {% block logo %}
+                <a href="">
+                    <div id="commsy_logo"></div>
+                </a>
+            {% endblock %}
+            {% block context_free_navigation %}
+                <div class="uk-navbar-right"></div>
+            {% endblock %}
+        </nav>
+    {% endblock %}
+
+    {% block body_content %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>
